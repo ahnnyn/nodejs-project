@@ -1,0 +1,24 @@
+{
+  "name": "nodejs_project",
+  "version": "1.0.0",
+  "description": "nodejs project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahnnyn/nodejs-project.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "nguyen thi anh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahnnyn/nodejs-project/issues"
+  },
+  "homepage": "https://github.com/ahnnyn/nodejs-project#readme"
+}
