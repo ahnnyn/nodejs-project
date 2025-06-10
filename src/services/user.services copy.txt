@@ -1,0 +1,95 @@
+import getConnection from "config/database";
+
+
+const handleCreateUser = async (fullname: String, email: String, address: String) => {
+
+    //insert into database
+
+    const connection = await getConnection();
+    try {
+        const sql = 'INSERT INTO `users`(`name`, `email`, `address`) VALUES (?, ?, ?)';
+        const values = [fullname, email, address];
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result;
+    } catch (err) {
+        console.log(err);
+        return [];
+    }
+    //return result
+
+    console.log(">>insert user")
+
+}
+
+const handleDeleteUser = async (id: String) => {
+
+    //insert into database
+    try {
+        const connection = await getConnection();
+        const sql = 'DELETE from `users` WHERE `id` = ? LIMIT 1';
+        const values = [id];
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result;
+    } catch (err) {
+        console.log(err);
+        return [];
+    }
+    //return result
+
+    console.log(">>insert user")
+
+}
+
+const getAllUsers = async () => {
+
+    const connection = await getConnection();
+
+    
+    // A simple SELECT query
+    try {
+        const [results, fields] = await connection.query(
+            'SELECT * FROM `users`'
+        );
+
+        return results;
+    } catch (err) {
+        console.log(err);
+        return [];
+    }
+}
+
+const getUserByID = async (id: String) => {
+
+    const connection = await getConnection();
+
+    // A simple SELECT query
+    try {
+        const connection = await getConnection();
+        const sql = 'SELECT * FROM `users` WHERE `id` = ? LIMIT 1';
+        const values = [id];
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result[0];
+    } catch (err) {
+        console.log(err);
+        return [];
+    }
+}
+
+const handleUpdateUser = async (id: String, fullname: String, email: String, address: String) => {
+    // A simple SELECT query
+    try {
+        const connection = await getConnection();
+        const sql = 'UPDATE `users` SET `name` = ?, `email` = ?, `address` = ? WHERE `id` = ?';
+        const values = [fullname, email, address, id];
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result;
+    } catch (err) {
+        console.log(err);
+        return [];
+    }
+}
+export { handleCreateUser, getAllUsers, handleDeleteUser, getUserByID, handleUpdateUser };
